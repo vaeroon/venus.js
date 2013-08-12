@@ -1,58 +1,111 @@
 {
-  "name"              : "venus",
-  "main"              : "Venus.js",
-  "description"       : "Execution environment for JavaScript unit testing",
-  "version"           : "1.0.10",
-  "keywords"          : [ "testing" ],
-  "homepage"          : "https://github.com/linkedin/venus.js",
-  "bugs"              : {
+  "name": "venus",
+  "main": "Venus.js",
+  "description": "Execution environment for JavaScript unit testing",
+  "version": "1.0.10",
+  "keywords": [
+    "testing"
+  ],
+  "homepage": "https://github.com/linkedin/venus.js",
+  "bugs": {
     "url": "https://github.com/linkedin/venus.js/issues",
     "email": "smclaughlin@linkedin.com"
   },
-  "engines"           : {
-    "node"            : ">=0.8.0"
+  "engines": {
+    "node": ">=0.8.0"
   },
-  "bin"               : {
-    "venus"          : "./bin/venus"
+  "bin": {
+    "venus": "./bin/venus"
   },
-  "licenses"          : [{
-    "type"            : "Apache 2.0"
-  }],
-  "dependencies"      : {
-    "phantomjs-please"  : "0.0.21",
-    "express"           : "3.0.0beta4",
-    "socket.io"         : "0.8.7",
-    "socket.io-client"  : "0.9.6",
-    "colors"            : "0.6.0",
-    "underscore"        : "1.3.3",
-    "i18n"              : "0.3.5",
-    "commander"         : "1.1.1",
-    "dustjs-linkedin"   : "0.6.0",
-    "consolidate"       : "0.3.0",
-    "winston"           : "0.6.1",
-    "json5"             : "0.1.0",
-    "portscanner"       : "0.1.3",
-    "underscore.string" : "2.2.0rc",
-    "fs-tools"          : "0.2.2",
-    "async"             : "0.1.22",
-    "dnode"             : "1.0.0",
-    "cli-prompt"        : "0.1.0",
-    "wrench"            : "1.4.3",
-    "webdriverjs"       : "0.6.9",
-    "useragent-parser"  : "0.1.1",
-    "istanbul"          : "0.1.27",
-    "mkdirp"            : "0.3.5"
+  "licenses": [
+    {
+      "type": "Apache 2.0"
+    }
+  ],
+  "dependencies": {
+    "phantomjs-please": "0.0.21",
+    "express": "3.0.0beta4",
+    "socket.io": "0.8.7",
+    "socket.io-client": "0.9.6",
+    "colors": "0.6.0",
+    "underscore": "1.3.3",
+    "i18n": "0.3.5",
+    "commander": "1.1.1",
+    "dustjs-linkedin": "0.6.0",
+    "consolidate": "0.3.0",
+    "winston": "0.6.1",
+    "json5": "0.1.0",
+    "portscanner": "0.1.3",
+    "underscore.string": "2.2.0rc",
+    "fs-tools": "0.2.2",
+    "async": "0.1.22",
+    "dnode": "1.0.0",
+    "cli-prompt": "0.1.0",
+    "wrench": "1.4.3",
+    "webdriverjs": "0.6.9",
+    "useragent-parser": "0.1.1",
+    "istanbul": "0.1.27",
+    "mkdirp": "0.3.5"
   },
   "devDependencies": {
-    "chai"              : "1.0.4",
-    "mocha"             : "1.2.0",
-    "sinon-chai"        : "2.1.2",
-    "sinon"             : "1.3.4"
+    "chai": "1.0.4",
+    "mocha": "1.2.0",
+    "sinon-chai": "2.1.2",
+    "sinon": "1.3.4"
   },
-  "os": ["!win32"],
+  "os": [
+    "!win32"
+  ],
   "preferGlobal": true,
   "scripts": {
-    "preinstall" : "node setup/preInstall.js",
+    "preinstall": "node setup/preInstall.js",
     "test": "mocha test/specs/test_suite.js"
-  }
+  },
+  "contributors": [
+    {
+      "name": "Venus"
+    },
+    {
+      "name": "Copyright 2013 LinkedIn"
+    },
+    {
+      "name": "AUTHORS"
+    },
+    {
+      "name": "Check out everyone who has contributed to the project:"
+    },
+    {
+      "name": "https://github.com/linkedin/venus/graphs/contributors"
+    },
+    {
+      "name": "FOUNDING TEAM"
+    },
+    {
+      "name": "* Seth McLaughlin",
+      "email": "smclaughlin@linkedin.com",
+      "url": "https://www.linkedin.com/in/sethmclaughlin"
+    },
+    {
+      "name": "* Roel Ramirez",
+      "email": "rramirez@linkedin.com",
+      "url": "https://www.linkedin.com/in/roelramirez"
+    },
+    {
+      "name": "* Ali Razfar",
+      "email": "arazfar@linkedin.com",
+      "url": "https://www.linkedin.com/in/razfar"
+    },
+    {
+      "name": "* Ryan Blunden",
+      "email": "rblunden@linkedin.com",
+      "url": "https://www.linkedin.com/in/ryanblunden"
+    }
+  ],
+  "readme": "* Venus.js Mailing List: https://groups.google.com/forum/#!forum/venusjs\n* Project site: http://www.venusjs.org\n* master: [![View Summary](https://secure.travis-ci.org/linkedin/venus.js.png?branch=master)](http://travis-ci.org/#!/linkedin/venus.js/branch_summary)\n\n##Dependencies\n\n* [Node.js v0.8.8](http://nodejs.org/dist/v0.8.8/)\n* [PhantomJS](http://www.phantomjs.org)\n\n## Overview\n\nVenus is a testing tool for JavaScript (JS), which simplifies running unit tests. When you are developing a browser-based project in JS,\nyou'll want to create unit tests and run them frequently. Typically, you'll write a unit test using some library, such as Mocha or Jasmine.\nThese libraries let you define testcases (or \"specs\" if you are following a BDD style), and provide APIs for writing assertions.\n\nTo run one of your tests in the browser, you need to have a test harness page. The harness page is simply an HTML document which includes\nseveral JS files:\n\n* Your testing library of choice\n* Other libraries your code depends on (such as jQuery)\n* The code you want to test (such as foo.js)\n* The testcase, or spec for the code you are testing (such as foo.spec.js)\n* Some initialization code to tell the testing library to start running the tests\n\nYou may also include some DOM elements for your test to interact with, or for the testing library to display results.\n\nFor example, your test harness might look something like this:\n\n```html\n  <!DOCTYPE html>\n  <html>\n  <head>\n    <title>Test for Foo</title>\n    <script type=\"text/javascript\" src=\"lib/jquery.js\"></script>\n    <script type=\"text/javascript\" src=\"lib/testing_library.js\"></script>\n    <script type=\"text/javascript\" src=\"foo.js\"></script>\n    <script type=\"text/javascript\" src=\"specs/foo.spec.js\"></script>\n    <script type=\"text/javascript\">\n        testLibrary.run();\n    </script>\n  </head>\n  <body>\n    <div id=\"results\"></div>\n  </body>\n  </html>\n```\nthen to run the test, you simply load this page in any web browser. This works, but it presents some problems:\n\n  1. Generating this test harness page is often a manual process\n  2. Running the test is a manual process of launching a browser, and visually inspecting the page for results\n  3. There is often no easy way to integrate running tests from an IDE, since there is no command line output from running the test\n\n##Venus to the rescue\nVenus strives to solve these problems without re-inventing the wheel. Rather than create an entirely new testing library, we set out to create\na tool to make it easier for you to work with an existing library. Here are the main benefits of Venus:\n\n  * Use *Simple annotations* in your tests to specify which testing library you want to use, the file you are testing, other file dependencies,\n    and a test harness template\n  * Quickly run your browser-based tests directly from the command line using PhantomJS\n  * Run your tests from the command line in multiple browsers (running locally or remotely) at the same time\n  * Integration with Continuous Integration tools (Selenium Grid + Travis CI)\n\n###Annotations\n\nIn your test file, the following annotations are supported:\n\n* @venus-fixture - Specify either an HTML string or the name of a template under `.venus/templates/...`.  You can also specify a path relative to where the test file resides. The contents will get included into the template specified by @venus-template.\n* @venus-include - JavaScript file to include with your test suite.  Use an annotation for every file you wish to include.\n* @venus-library - Indicates the testing library/framework you wish to use.  [QUnit](http://www.qunitjs.com), [Mocha](http://visionmedia.github.com/mocha/), and [Jasmine](http://pivotal.github.com/jasmine/) are supported out of the box.\n* @venus-template - Specify the name of the test harness template (under `.venus/templates`, no file extension) you want to include for your test suite.\n\n##Get started\n\nVisit the project page at http://www.venusjs.org for more information.\n",
+  "readmeFilename": "README.md",
+  "_id": "venus@1.0.10",
+  "dist": {
+    "shasum": "ec5bb2c5f27e07d3ae769ad8e0b2814f36a7d63e"
+  },
+  "_from": "venus"
 }

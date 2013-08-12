@@ -26,7 +26,6 @@ var _         = require('underscore'),
     locale    = require('./lib/util/locale'),
     logger    = require('./lib/util/logger'),
     phantom   = require('./lib/uac/phantom'),
-    webdriver = require('./lib/uac/webdriver'),
     program   = require('commander'),
     prompt    = require('cli-prompt'),
     wrench    = require('wrench'),
@@ -98,18 +97,14 @@ Venus.prototype.init = function (args) {
     .option('-t, --test [tests]', i18n('Comma separated string of tests to run'))
     .option('-p, --port [port]', i18n('port to run on'), function (value) { return parseInt(value, 10); })
     .option('-n, --phantom [path to binary]', i18n('Use phantomJS client to run browser tests'))
-    .option('-s, --selenium [server url]', i18n('Use selenium client to run browser tests'))
-    .option('--browser [browser|version]', i18n('Browser name to request from selenium webdriver'))
     .option('-l, --locale [locale]', i18n('Specify locale to use'))
     .option('-v, --verbose', i18n('Run in verbose mode'))
     .option('-d, --debug', i18n('Run in debug mode'))
     .option('-c, --coverage', i18n('Generate Code Coverage Report'))
     .option('--hostname', i18n('Set hostname for test URLs, defaults to your ip address'))
     .option('--require-annotations', i18n('Ignore JavaScript test files which do not contain a Venus annotation (@venus-*)'))
-
-    .option('-r, --selenium-server [url]', i18n('[deprecated] Specify selenium server to use'))
-    .option('-b, --selenium-browser [browser]', i18n('[deprecated] Specify browser to use with selenium'))
-
+    .option('--tdd', 'Enables TDD mode (watch files and live reload tests)')
+    .option('--watch [pattern]', 'Set a custom glob pattern for file watching')
     .action(_.bind(this.command(this.run), this));
 
   program.parse(args);
@@ -149,6 +144,11 @@ Venus.prototype.applyCommandLineFlags = function (program) {
   if (program.locale) {
     locale(program.locale);
   }
+
+  /* groverv: added the feature to support TDD Mode */
+  this.server.setTDDMode(!!program.tdd);
+
+  if(!!program.watch) this.server.setWatchPattern(program.watch);
 };
 
 /**
@@ -165,38 +165,6 @@ Venus.prototype.run = function (program) {
   this.server = new executor.Executor();
   this.applyCommandLineFlags(program);
   program.homeFolder = __dirname;
-
-
-  // if (program.webdriver || program.selenium) {
-    // program.uac = 'webdriver';
-
-    // if (program.webdriver) {
-      // program['uac-options'] = program.webdriver;
-    // }
-  // }
-
-  // if (program.phantom) {
-    // program.uac = 'phantom';
-    // program['uac-options'] = program.phantom;
-  // }
-
-  // if (program.uac === 'phantom') {
-    // program.phantom = true;
-    // if (program['uac-options']) {
-      // program.phantom = program['uac-options'];
-    // }
-  // }
-
-  // Fix for issue gh-154. Needs some more work.
-  // if (program.uac) {
-    // uac = require('./lib/uac/' + program.uac);
-
-    // if (typeof uac.onTestsLoaded === 'function') {
-      // this.server.on('tests-loaded', uac.onTestsLoaded);
-    // } else {
-      // this.quit('error', i18n('%s UAC does not implement onTestsLoaded hook.', program.uac));
-    // }
-  // }
 
   this.server.init(program);
 };

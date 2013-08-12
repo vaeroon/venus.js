@@ -13,6 +13,7 @@ body {
 #sandbox {
   width: 100%;
   border: 0;
+  height: 100%;
 }
 
 .test-list li {
@@ -136,6 +137,7 @@ p {
 	lineHeight: 1em;
   padding-left: 30px;
 }
+
 
 
 
