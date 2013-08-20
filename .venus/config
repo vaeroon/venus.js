@@ -32,7 +32,7 @@
 
   // Default settings
   default: {
-    library: 'mocha'
+    library: 'jasmine'
   },
 
   // Binaries

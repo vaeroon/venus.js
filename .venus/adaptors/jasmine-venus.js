@@ -1,6 +1,6 @@
 // @author LinkedIn
 
-// Create a Jasmine adaptor which inherits methods from the adapter template (.venus/adapters/adaptor-template.js)    
+// Create a Jasmine adaptor which inherits methods from the adapter template (.venus/adapters/adaptor-template.js)
 
 // Instantiate adaptor
 function Adaptor() {};
@@ -19,7 +19,9 @@ Adaptor.prototype.start = function() {
       self = this,
       fixtureHelper = (typeof FixtureHelper === 'function') ? new FixtureHelper() : false;
 
-  jasmineEnv.addReporter({
+    //bikrama: adding trivial reporting to show reporting on browser.
+    jasmineEnv.reporter.addReporter(new jasmine.TrivialReporter());
+    jasmineEnv.addReporter({
     reportRunnerStarting: function(runner) {
     },
     reportRunnerResults: function(runner) {
@@ -69,7 +71,7 @@ AdaptorTemplate.prototype.getTestStatus = function(data) {
   return data.results().passedCount === data.results().totalCount ? this.ENUM_STATE.PASSED : this.ENUM_STATE.FAILED;
 };
 
-
+/*
 AdaptorTemplate.prototype.getTestStackTrace = function(data) {
   try {
     return data.results_.items_[0].trace.stack;
@@ -77,6 +79,23 @@ AdaptorTemplate.prototype.getTestStackTrace = function(data) {
     return '';
   }
 };
+*/
+
+AdaptorTemplate.prototype.getTestStackTrace = function(data) {
+    try{
+        var expectationResults = data.results_.items_;
+        for(var i=0, len=expectationResults.length; i<len; i++) {
+            var resultItem = expectationResults[i];
+            if(resultItem.passed_===false) {
+                return resultItem.trace;
+            }
+        }
+        return '';
+    }
+    catch(e){
+        return '';
+    }
+}
 
 AdaptorTemplate.prototype.getTotal = function(data) {
   return data.results().totalCount;

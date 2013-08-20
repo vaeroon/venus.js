@@ -33,7 +33,6 @@ AdaptorTemplate.prototype.addTestResult = function(data) {
     message: this.getTestMessage(data),
     stackTrace: this.getTestStackTrace(data)
   };
-
   this.results.tests.push(test);
 };
 
